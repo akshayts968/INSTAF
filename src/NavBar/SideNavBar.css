@@ -1,5 +1,16 @@
 .SideNavBar{
-    width: 50vw;
+    width: 220px;
     height: 100vh;
     background-color: lawngreen;
+    padding: 8px 12px 20px;
+}
+@media screen and (min-width:1264px) {
+    .SideNavBar{
+        width: 220px;
+    }
+}
+@media screen and (max-width:1264px) {
+    .SideNavBar{
+        width: 48px;
+    }
 }

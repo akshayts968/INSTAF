@@ -1,0 +1,19 @@
+.Logo{
+    width: fit-content;
+    height: 32px;
+    padding: 25px 12px 16px;
+    background-color: aqua;
+}
+.Logo .img1{
+    width: 192px;
+    height: 100%;
+    object-fit: cover;
+}
+.img2{display: none;}
+@media screen and (max-width:1264px) {
+.img1{display: none;}
+.img2{
+    width: 24px;
+    display: flex;
+}
+}
