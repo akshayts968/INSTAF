@@ -1,0 +1,102 @@
+:root{
+    --userWidth:66.66777719%
+}
+.MainProfile{
+    background-color: rgb(0, 0, 0);
+    height: 90%;
+    width: 100%;
+    padding: 30px 20px 0;
+    margin-bottom: 30px;
+}
+.header{
+    width: 100%;
+    height: 194px;
+    background-color: rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns: auto var(--userWidth);
+}
+.item1Img{
+    background-image: url('https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    height: 150px;
+}
+.item1 {
+    grid-row: span 3;
+    margin-right: 28px;
+    display: flex;
+    justify-content: center;
+  }
+  .item2 {
+    margin-bottom: 20px;
+    height: 33px;
+    display: flex;
+  }
+  
+  .item3 {
+    height: 39px;
+    display: flex;
+    align-items: center;
+  }
+  .NPost{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    margin-right: 40px;
+    color: rgb(245, 245, 245);
+  }
+  .item4 {
+    height: 57px;
+    color: rgb(245, 245, 245);
+
+  }
+
+  .Name{
+    height: 18px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+
+  }
+  .threadName{
+    height: 26px;
+    padding: 6px 7px;
+    font-size: 14px;
+    line-height: 18px;
+    border-radius: 100px;
+    width: fit-content;
+    font-size: 12px;
+    font-weight: 400;
+    background: rgb(54, 54, 54);
+
+  }
+  .item5 {
+    grid-column: span 2;
+    background-color: lightpink;
+    margin-top: 30px;
+    height: 0;
+  }
+  
+.username{
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
+    margin-right: 20px;
+}
+.UserB2{
+    padding: 0 16px;
+    height: 32px;
+    background-color: aqua;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    background: rgb(54, 54, 54);
+    display: flex;
+    align-items: center;
+    color: rgb(245, 245, 245);
+    margin-right: 10px;
+}

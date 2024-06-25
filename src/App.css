@@ -2,4 +2,13 @@
   width: 100vw;
   height: 100vh;
   background: #000;
+  position: fixed;
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+@media screen and (min-width:766px) {
+  .App{
+    flex-direction: row;
+  }
 }

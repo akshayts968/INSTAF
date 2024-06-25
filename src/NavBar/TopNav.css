@@ -1,0 +1,78 @@
+.TopNav{
+    width: 100vw;
+    height: 60px;
+    padding: 0 16px;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search-bar{
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+    background: rgb(38, 38, 38);
+    display: flex;
+}
+.search-bar img{
+    height: 100%;
+    aspect-ratio: 1;
+}
+.Search{
+    all: unset;
+    color: aquamarine;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 18px;
+    color: rgb(255, 2, 2);
+    display: flex;
+    align-items: center;
+}
+.heart{
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: none;
+    display: flex;
+    justify-content: center;
+    background-color: cornsilk;
+}
+.heart img{
+    width: 30px;
+}
+.topleftimg{
+    height: 29px;
+    width: 103px;
+    object-fit: cover;
+}
+.topRight{
+    margin-right: 18px;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+.search-res{
+    position: absolute;
+    width: 375px;
+    height: 100px;
+    background: rgb(38, 38, 38);
+    top: 60px;
+    padding-top: 12px;
+    height: 35px;
+    border-radius: 6px;
+    right: 0;
+}
+.search-recent{
+    padding-top: 4px;
+    margin: 0 16px;
+    height: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+}
+@media screen and (min-width:766px) {
+    .TopNav{
+        display: none;
+    }
+}

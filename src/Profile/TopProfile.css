@@ -1,0 +1,33 @@
+.TopProfile{
+    height: 44px;
+    padding: 0 16px;
+    background-color: darkorange;
+    display: flex;
+    align-items: center;
+}
+.leftTProfile{
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+    background-color: darkred;
+}
+.midTProfile{
+    height: 20px;
+    display: flex;
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    justify-content: center;
+}
+.rightTProfile{
+    height: 24px;
+    width: 24px;
+    margin-left: 8px;
+    background-color: darkred;
+}
+@media screen and (min-width:766px) {
+    .TopProfile{
+        display: none;
+    }
+}

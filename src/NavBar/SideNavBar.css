@@ -1,9 +1,17 @@
 .SideNavBar{
     width: 220px;
     height: 100vh;
-    background-color: lawngreen;
     padding: 8px 12px 20px;
+    display: flex;
+    flex-direction: column;
 }
+.sideM{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 @media screen and (min-width:1264px) {
     .SideNavBar{
         width: 220px;
@@ -12,5 +20,10 @@
 @media screen and (max-width:1264px) {
     .SideNavBar{
         width: 48px;
+    }
+}
+@media screen and (max-width:766px) {
+    .SideNavBar{
+        display: none;
     }
 }
