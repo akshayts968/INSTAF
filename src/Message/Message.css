@@ -1,0 +1,122 @@
+.Message{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+.Message-header{
+    padding: 14px 16px 10px;
+    height: 20px;
+    background-color: hotpink;
+    display: flex;
+}
+.Message-TL{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: rgb(245, 245, 245);
+    display: flex;
+    flex-grow: 1;
+}
+.request{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    color: rgb(0, 149, 246);
+}
+.MessageOne{
+    padding: 8px 16px;
+    height: 56px;
+    display: flex;
+}
+.MessageOne img{
+    height: 100%;
+    aspect-ratio: 1;
+    padding-right: 12px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+}
+.name{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: rgb(245, 245, 245);
+}
+.info{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: rgb(245, 245, 245);
+}
+.MessageInd{
+    width: 100%;
+}
+.MessageIndTOP{
+    padding: 0 16px;
+    border-bottom: 0.8px solid red;
+    height: 74.2px;
+    background-color: forestgreen;
+}
+.ProfileMSg{
+    height: 254px;
+    width: 100%;
+    background-color: darkorchid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ProfileMSg img{
+    width: 96px;
+    height: 96px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+}
+.viewPro{
+    margin: 24px 0 32px;
+    height: 32px;
+    width: 107.725px;
+    border-radius: 8px;
+    background-color: rgb(245, 245, 245);
+}
+.MessageBox{
+    height: 77.6px;
+    background-color: cornflowerblue;
+    display: flex;
+    align-items: center;
+}
+.Message-Box{
+    margin: 0 16px 0 11px;
+    height: 44px;
+    display: flex;
+    flex-grow: 1;
+    background: #000;
+    border: 1px solid white;
+    border-radius: 10px;
+    border-radius: 22px;
+    padding: 0 8px;
+}
+.Emoji{
+    color: aliceblue;
+    padding: 8px;
+}
+.INPUT{
+    display: flex;
+    flex-grow: 1;
+    background: aqua;
+}
+@media screen and (min-width:766px) {
+    .Message{
+        min-width: 397.2px !important;
+        height: 100%;
+        background-color: aqua;
+    }
+    .MessageView{
+        height: 100vh;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        background-color: firebrick;
+    }
+}

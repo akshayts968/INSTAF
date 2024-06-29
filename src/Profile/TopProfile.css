@@ -30,4 +30,7 @@
     .TopProfile{
         display: none;
     }
+    .Message_TOP{
+        display: flex;
+    }
 }

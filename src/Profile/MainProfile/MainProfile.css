@@ -85,6 +85,19 @@
     font-weight: 400;
     line-height: 25px;
     margin-right: 20px;
+    word-break: break-word;
+    white-space-collapse: collapse;
+    text-wrap: nowrap;
+    text-size-adjust: 100%;
+    text-overflow: ellipsis;
+    text-align: start;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    max-width: 100%;list-style-type: none;
+    list-style-image: none;
+    list-style-type: none;
+    height: 25px;
+
 }
 .UserB2{
     padding: 0 16px;
@@ -100,3 +113,72 @@
     color: rgb(245, 245, 245);
     margin-right: 10px;
 }
+.Highlights{
+  height: 130px;
+  margin-bottom: 44px;
+}
+.newHigh{
+  padding: 10px 15px;
+  height: 108px;
+  width: 85px;
+}
+.newHighD{
+  width: 100%;
+    /* height: 100%; */
+    aspect-ratio: 1;
+    border-radius: 50%;
+    /* background: #000; */
+    border: 3px solid white;
+    position: relative;
+}
+.postBar{
+  width: 100%;
+  height: 52px;
+  display: flex;
+    justify-content: center;
+    border-top: 1px solid antiquewhite;
+}
+.POSTS,.SAVED,.TAGGED{
+  margin-right: 60px;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 8px;
+  color: rgb(245, 245, 245);
+}
+.Select{
+  border-top: 2px solid darkblue;
+}
+.plus{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 77px !important;
+    background: aqua;
+    border-radius: 50%;
+}
+.POSTIMG{
+  width: 100%;
+  height: 600px;
+  background-color: green;
+  display: flex;
+}
+.img{
+  width: 30%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin: 0 5px 5px;
+}
+.img20{
+aspect-ratio: 1;  
+  width: 100%;
+  object-fit: cover;
+}
+.Posts{
+    display: flex;
+    flex-wrap: wrap;
+  }

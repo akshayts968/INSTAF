@@ -4,6 +4,45 @@
     padding: 8px 12px 20px;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+.Search-Div{
+    height: 100vh;
+    position: absolute;
+    width: 350px;
+    background: aqua;
+    left: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+.Search-Bar{
+    margin: 0 16px;
+    height: 64px;
+    margin-bottom: 24px;
+    background-color: magenta;
+    display: flex;
+}
+.Search-INPUT{
+    padding: 3px 16px;
+    height: 34px;
+    border-radius: 8px;
+    background-color: maroon;
+    display: flex;
+    flex-grow: 1;
+}
+.Recent-Search{
+    padding-top: 12px;
+    background-color: gold;
+    flex-grow: 1;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+.Recent-Search-Head{
+    padding-top: 4px;
+    margin: 6px 24px 8px;
+    height: 20px;
+    background-color: violet;
 }
 .sideM{
     display: flex;
@@ -11,7 +50,29 @@
     flex-direction: column;
     justify-content: space-between;
 }
+.iconDiv,.sideM{
+    color: white;
+}
+.SearchUser{
+    padding: 8px 24px;
+    height: 44px;
+    background: #000;
+    display: flex;
+}
+.Search-img{
+    height: 100%;
+    aspect-ratio: 1;
+    background-color: aqua;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.User-deta{
+    flex-grow: 1;
+}
+.Close{
+    margin-left: 12px;
 
+}
 @media screen and (min-width:1264px) {
     .SideNavBar{
         width: 220px;

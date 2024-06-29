@@ -17,6 +17,9 @@
     line-height: 20px;
     color: white;
 }
+.Icon{
+    color: white;
+}
 @media screen and (max-width:1264px) {
     .ItemName{
         display: none;
