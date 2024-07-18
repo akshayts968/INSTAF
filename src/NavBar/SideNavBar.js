@@ -16,8 +16,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 function SearchUser(props){
   return (
-    <Link to={`/profile/${props.id}`}>
-    <div className='SearchUser'>
+    <Link to={`/profile/${props.id}`} onClick={() => props.setIsSearchActive(false)}>
+    <div className='SearchUser' >
       <img className='Search-img' src={`${props.img}`}/>
       <div className='User-deta'>
          <div className='username'>{props.username}</div>
@@ -37,6 +37,16 @@ const iconNames = [
   'Create',
   'Account',
 ];
+const link = [
+  'home',
+  '',
+  'explore',
+  'reels',
+  'p',
+  '',
+  '',
+  'profile'
+]
 const icons = [
   <HomeIcon key="home" />,
   <SearchIcon key="search" />,
@@ -54,6 +64,7 @@ const BIcon = [
 function SideNavBar() {
 const [sValue,setSValue] = useState("");
 const [searchResult, setSearchResult] = useState(null);
+const [isSearchActive, setIsSearchActive] = useState(false);
   function Search(e){
     console.log(e.target.value);
     setSValue(e.target.value)
@@ -83,7 +94,7 @@ const [searchResult, setSearchResult] = useState(null);
 
           <div className='iconDiv' >
           {icons.map((icon, index) => (
-          <Item key={index} icon={icon} name={iconNames[index]}>
+         <Item key={index} icon={icon} name={iconNames[index]} link={link[index]} onClick={setIsSearchActive} isSearchActive={isSearchActive}>
             {icon}
           </Item>
         ))}
@@ -94,7 +105,7 @@ const [searchResult, setSearchResult] = useState(null);
             </Item>  
           ))}
           </div></div>
-          <div className='Search-Div'>
+          {isSearchActive &&<div className='Search-Div' onBlur={()=>{setIsSearchActive(!isSearchActive)}}>
              <div className='Search-Bar'>
                 <input className='Search-INPUT' onChange={Search}></input>
              </div>
@@ -102,25 +113,10 @@ const [searchResult, setSearchResult] = useState(null);
                <div className='Recent-Search-Head'>
                </div>
                {searchResult && searchResult.map((user) => (
-               <SearchUser id={user._id} img={user.profile} name={user.name} username={user.username}></SearchUser>
-              ))}
-              {searchResult && searchResult.map((user) => (
-               <SearchUser id={user._id} img={user.profile} name={user.name} username={user.username}></SearchUser>
-              ))}
-              {searchResult && searchResult.map((user) => (
-               <SearchUser id={user._id} img={user.profile} name={user.name} username={user.username}></SearchUser>
-              ))}
-              {searchResult && searchResult.map((user) => (
-               <SearchUser id={user._id} img={user.profile} name={user.name} username={user.username}></SearchUser>
-              ))}
-              {searchResult && searchResult.map((user) => (
-               <SearchUser id={user._id} img={user.profile} name={user.name} username={user.username}></SearchUser>
-              ))}
-              {searchResult && searchResult.map((user) => (
-               <SearchUser id={user._id} img={user.profile} name={user.name} username={user.username}></SearchUser>
+               <SearchUser id={user._id} img={user.profile} name={user.name} username={user.username} setIsSearchActive={setIsSearchActive}></SearchUser>
               ))}
              </div>
-          </div>
+          </div>}
       </div>
     );
   }

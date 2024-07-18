@@ -3,8 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 function Login() {
+
     const navigate = useNavigate();
-    const User = JSON.parse(localStorage.getItem('user'));
+    //const User = JSON.parse(localStorage.getItem('user'));
     //console.log(User,"ljd")
     /*useEffect(() => {
         if(User)

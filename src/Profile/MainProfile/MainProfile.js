@@ -1,111 +1,137 @@
 import './MainProfile.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddIcon from '@mui/icons-material/Add';
 import { useParams } from 'react-router-dom';
-function POST(props){
-    return(
-        <div className='img'>
-      <img className='img20' src={props.img?props.img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOr3cDHrDjizSMpE4E4zRDzGsV6F7EmO867A&s'}></img>
-      </div>
-    )
-}
-function POSTIMG(){
-    return(
-        <div className='POSTIMG'>
-         
-        </div>
-    )
-}
-function Bar(props){
-    const currSelect=props.curr===props.index?" Select":"";
-    return (
-        <div className={props.title+currSelect} onClick={()=>props.setCurr(props.index)}>
-            {props.title}
-         </div>
-    )
-}
-function PostBar(){
-    const [curr,setCurr]=React.useState(0);
-    const bar=["POSTS","SAVED","TAGGED"];
-    return (
-        <div className='postBar'>
-         {bar.map((item, index) => (
-            <Bar title={item} key={index} index={index} curr={curr} setCurr={setCurr} ></Bar>
-         ))}
-       </div>
-    )
-}
-function MainProfile() {
-    const [Pos,setPos]= React.useState([]);
-    const [User,setUser] = React.useState("");
-    let { id } = useParams();
-    const [PData,setPData] = React.useState("");
+import Edit from '../../Add/Edit';
+import PostADD from '../../Add/Padd';
+import DeletePost from '../../Add/DeletePost'; // Adjusted import name
 
-    console.log(id,"is something")
-    React.useEffect(() => {
-        const fetchPosts = async () => {
-          try {
-            const User = JSON.parse(localStorage.getItem('user'));
-            setUser(User);
-            console.log(User,"is found");
-            if(id){
-                const Nonresponse = await axios.get(`http://localhost:8080/post/${id}`);
-                setPos(Nonresponse.data.data);
-                setPData(Nonresponse.data.User);
-                console.log("RES",Nonresponse)
-            }else{
-            const response = await axios.get(`http://localhost:8080/post/${User._id}`);
-            console.log("RES",response);
-            setPos(response.data.data);
-            setPData(response.data.User);
-            }
-          } catch (error) {
-            console.error('Error fetching posts:', error);
-          }
-        };
-    
-        fetchPosts();/*
-       const User = localStorage.getItem('user');
-       setPos(User);*/
-      }, [id]);
+function Post({ img, onClick, index }) {
   return (
-    <div className="MainProfile">
-       <div className='header'>
-    <div class="item1">
-        <div className='item1Img' style={{
-          backgroundImage: `url(${PData.profile})`
-        }}></div>
+    <div className='img' onClick={() => {onClick(index)}}>
+      <img
+        className='img20'
+        src={img || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOr3cDHrDjizSMpE4E4zRDzGsV6F7EmO867A&s'}
+        alt='Post'
+      />
     </div>
-    <div class="item2">
-        <div className='username'>{PData.name || "ak__s_h__ay"}</div>
-        <div className='UserB2'>Edit Profile</div>
-        <div className='UserB2'>View archive</div>
+  );
+}
+
+function Bar({ title, curr, index, setCurr }) {
+  const currSelect = curr === index ? ' Select' : '';
+  return (
+    <div className={`${title}${currSelect}`} onClick={() => setCurr(index)}>
+      {title}
     </div>
-    <div class="item3">
-        <div className='NPost'>{PData.nPost || "0"} posts</div>
-        <div className='NPost'>{PData.nFollowers || "0"} followers</div>
-        <div className='NPost'>{PData.nFollowing || "0"} following</div>
+  );
+}
+
+function PostBar() {
+  const [curr, setCurr] = useState(0);
+  const bar = ['POSTS', 'SAVED', 'TAGGED'];
+  return (
+    <div className='postBar'>
+      {bar.map((item, index) => (
+        <Bar title={item} key={index} index={index} curr={curr} setCurr={setCurr} />
+      ))}
     </div>
-    <div class="item4">
-        <div className='Name'>{PData.name || "0"}</div>
-        <div className='threadName'>@ ak__s_h__ay</div>
-    </div>
-    <div class="item5">Item 5</div>
-       </div>
-       <div className='Highlights'>
-         <div className='newHigh'>
-            <div className='newHighD'>
-            <AddIcon className='plus'/>
+  );
+}
+
+function MainProfile() {
+  const [edit, setEdit] = useState(false);
+  const [addPost, setAddPost] = useState(false);
+  const [deletePost, setDeletePost] = useState(null); // Changed to store post ID to be deleted
+  const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState({});
+  const [profileData, setProfileData] = useState({});
+  const { id } = useParams();
+
+  const toggleEdit = () => setEdit(!edit);
+  const toggleAddPost = () => setAddPost(!addPost);
+  const confirmDeletePost = (postId) => setDeletePost(postId); // Set the post ID for deletion
+  const closeDeletePost = () => setDeletePost(null); // Clear the delete post state
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        setUser(storedUser);
+
+        const response = id
+          ? await axios.get(`http://localhost:8080/post/${id}`)
+          : await axios.get(`http://localhost:8080/post/${storedUser._id}`);
+
+        setPosts(response.data.data);
+        setProfileData(response.data.User);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, [id]);
+
+  const handlePostDelete = (deletedPostId) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => post._id !== deletedPostId));
+  };
+
+  return (
+    <div className='MainProfile'>
+      {edit && <Edit />}
+      {addPost && <PostADD />}
+      {deletePost && (
+        <DeletePost postId={deletePost} onClose={closeDeletePost} onDelete={handlePostDelete} />
+      )}
+
+      <div className='header'>
+        <div className='item1'>
+          <div
+            className='item1Img'
+            style={{
+              backgroundImage: `url(${profileData.profile})`,
+            }}
+          ></div>
+        </div>
+        <div className='item2'>
+          <div className='username'>{profileData.name || 'ak__s_h__ay'}</div>
+          {id ? (
+            <div className='UserB2'>Follow</div>
+          ) : (
+            <div className='UserB2' onClick={toggleEdit}>
+              Edit Profile
             </div>
-         </div>
-       </div>
-       <PostBar></PostBar>
-        <div className='Posts'>
-         {Pos.map(post => (<POST key={post._id} img={post.videourl}></POST>))}
-         </div>
+          )}
+          <div className='UserB2'>View archive</div>
+        </div>
+        <div className='item3'>
+          <div className='NPost'>{profileData.nPost || '0'} posts</div>
+          <div className='NPost'>{profileData.nFollowers || '0'} followers</div>
+          <div className='NPost'>{profileData.nFollowing || '0'} following</div>
+        </div>
+        <div className='item4'>
+          <div className='Name'>{profileData.name || '0'}</div>
+          <div className='threadName'>@ ak__s_h__ay</div>
+        </div>
+        <div className='item5'>Item 5</div>
+      </div>
+      <div className='Highlights' onClick={toggleAddPost}>
+        <div className='newHigh'>
+          <div className='newHighD'>
+            <AddIcon className='plus' />
+          </div>
+        </div>
+      </div>
+      <PostBar />
+      <div className='Posts'>
+        {posts.map((post) => (
+          <Post key={post._id} index={post._id} img={post.videourl} onClick={confirmDeletePost} />
+        ))}
+      </div>
     </div>
-    );
+  );
 }
 
 export default MainProfile;

@@ -4,7 +4,7 @@ function TopProfile(props) {
   return (
     <div className={classId}>
         <div className='leftTProfile'></div>
-        <div className='midTProfile'>{props.user.name||'ak__s_h__ay'}</div>
+        <div className='midTProfile'>{props.username||'ak__s_h__ay'}</div>
         <div className=' rightTProfile'></div>
     </div>);
 }

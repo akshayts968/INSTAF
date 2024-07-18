@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
+const User = require("./User");
 //const Comment=require('./comment.js');
 const Post=new Schema({
-    post:{
-        type:String,
-        default:"https://img.jagranjosh.com/imported/images/E/GK/sachin-records.png",
-        set:(v) =>
-        v===""
-        ?"https://img.jagranjosh.com/imported/images/E/GK/sachin-records.png"
-        :v,
+    videourl:{
+        type: String,
+        required: true,
     },
-    type:String,
     nLikes:{
         type:Number,
         default:0
@@ -25,8 +21,13 @@ const Post=new Schema({
         type:Number,
         default:0
     },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment', 
+    }],
     postOwner: {
-        type: ObjectId, // Define type properly
+            type:Schema.Types.ObjectId,
+            ref:"User",
     }
 });
 module.exports=mongoose.model("Post",Post);

@@ -1,5 +1,10 @@
 .MainHome{
-    background: rgb(255, 255, 255);
+    /*background: rgb(255, 255, 255);
     flex-grow: 1;
+    overflow: scroll;*/
+    margin: auto;
     overflow: scroll;
+    /* height: fit-content; */
+    height: 100vh;
+    scrollbar-width: none;
 }

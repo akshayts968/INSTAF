@@ -8,6 +8,7 @@ function Profile() {
    const [User,setUser]=useState("");
    useEffect(() => {
    const User = JSON.parse(localStorage.getItem('user'));
+   console.log(User);
    setUser(User);}, []);
   return (
     <div className="Profile">

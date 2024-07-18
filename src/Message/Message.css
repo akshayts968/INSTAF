@@ -72,6 +72,14 @@
     margin-top: 16px;
     margin-bottom: 16px;
     border-radius: 50%;
+    object-fit: cover;
+
+}
+.msgMain{
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 .viewPro{
     margin: 24px 0 32px;
