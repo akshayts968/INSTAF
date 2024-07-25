@@ -1,0 +1,38 @@
+.Dot{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+.Dot3{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0px, -50%);
+    z-index: 5;
+}
+.Dot3Main{
+    width: calc(100% - 88px);
+    margin: 20px;
+    background: rgb(38,38,38);
+    margin: auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.dotItem{
+  padding: 4px 8px;
+  height: 40px;
+  width: calc(100% - 16px);
+  border-bottom-style:solid ;
+  border-bottom-color:rgb(54,54,54) ;
+  border-bottom-width: 1px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 21px;
+  color:rgb(237, 73, 86);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

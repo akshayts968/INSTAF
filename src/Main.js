@@ -3,14 +3,23 @@ import SideNavBar from './NavBar/SideNavBar';
 import MainHome from './MainHome/MainHome';
 import TopNav from './NavBar/TopNav';
 import BottomNav from './NavBar/BottomNav';
+import Dot3 from './Profile/Dot3';
+import { useState } from 'react';
 
 function Main() {
+  const [Dot, setDot] = useState(false);
+
+  const toggleDot = () => {
+    setDot(prevDot => !prevDot);
+  };
+
   return (
     <div className="Main">
-      <TopNav></TopNav>
-      <SideNavBar></SideNavBar>
-      <MainHome></MainHome>
-      <BottomNav></BottomNav>
+      {Dot && <Dot3 toggle={toggleDot}/>}
+      <TopNav />
+      <SideNavBar />
+      <MainHome toggle={toggleDot} />
+      <BottomNav />
     </div>
   );
 }

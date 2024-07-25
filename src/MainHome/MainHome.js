@@ -3,7 +3,7 @@ import axios from 'axios';
 import Main from '../Home/Main'; // Import the Main component
 import './MainHome.css'
 import SubMain from '../Home/SubMain';
-function MainHome() {
+function MainHome({ toggle }) {
   const [posts, setPosts] = useState([]);
   const [currPost, setCurrPost] = useState([]);
   const [separatePost,setSeparatePost] = useState(false);
@@ -12,7 +12,8 @@ function MainHome() {
       try {
         const response = await axios.get('http://localhost:8080/api/posts');
         const data = response.data;
-        console.log(data, "is this");
+       // console.log(data, "is this");
+        
         setPosts(data.posts);
         setCurrPost(data.posts[0]); // Assuming the API response has a "posts" field
         // setUsers(data.users); // Uncomment if you need to set users
@@ -35,9 +36,9 @@ function MainHome() {
   };
   return (
     <div className="MainHome">
-      {separatePost && <SubMain post={currPost} onClose={handleCloseClick} />}
+      {separatePost && <SubMain  post={currPost} onClose={handleCloseClick} />}
       {posts.map((post, index) => (
-        <Main key={index} post={post} onClick={() => handlePostClick(post)}/>
+        <Main key={index} post={post} toggle={toggle} onClick={() => handlePostClick(post)}/>
       ))}
     </div>
   );

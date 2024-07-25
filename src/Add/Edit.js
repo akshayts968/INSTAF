@@ -49,9 +49,10 @@ function Edit(props) {
         },
       });
       console.log(formPayload);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
       navigate('/profile');
       // localStorage.setItem('user', JSON.stringify(response.data));
-      // navigate("/profile");
+      //navigate("/profile");
     } catch (error) {
       console.error(error);
     }

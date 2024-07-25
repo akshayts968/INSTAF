@@ -6,11 +6,12 @@ function DeletePost({ postId, onClose, onDelete }) {
   const navigate = useNavigate();
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/post/${postId}`);
+      const response = await axios.delete(`http://localhost:8080/post/${postId}`);
       onDelete(postId);  // Call the onDelete function to update the posts in the parent component
       onClose();
-             // Close the delete confirmation
-             navigate('/profile');
+      console.log(response);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      navigate('/profile');
     } catch (error) {
       console.error('Error deleting post:', error);
     }

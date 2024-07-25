@@ -30,12 +30,14 @@ const newUser=new Schema({
     },
     followers:[
         {
-        type:String,
+            type:Schema.Types.ObjectId,
+            ref:"User",
         }
     ],
     followings:[
         {
-        type:String,
+            type:Schema.Types.ObjectId,
+            ref:"User",
         }
     ],
     nFollowers:{

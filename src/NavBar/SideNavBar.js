@@ -113,7 +113,7 @@ const [isSearchActive, setIsSearchActive] = useState(false);
                <div className='Recent-Search-Head'>
                </div>
                {searchResult && searchResult.map((user) => (
-               <SearchUser id={user._id} img={user.profile} name={user.name} username={user.username} setIsSearchActive={setIsSearchActive}></SearchUser>
+               <SearchUser key={user._id} id={user._id} img={user.profile} name={user.name} username={user.username} setIsSearchActive={setIsSearchActive}></SearchUser>
               ))}
              </div>
           </div>}

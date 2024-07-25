@@ -17,6 +17,10 @@ const Post=new Schema({
             type:String,
         }
     ],
+    description:
+    {
+        type:String,
+    },
     nComments:{
         type:Number,
         default:0
@@ -28,6 +32,10 @@ const Post=new Schema({
     postOwner: {
             type:Schema.Types.ObjectId,
             ref:"User",
-    }
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
 });
 module.exports=mongoose.model("Post",Post);

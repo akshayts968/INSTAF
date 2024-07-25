@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
-function PostADD(props) {
+function PostADD() {
   const navigate = useNavigate();
   const [Post, setPost] = useState(null);
+  const [description, setDescription] = useState("");
   const [preview, setPreview] = useState(null);
   const User = JSON.parse(localStorage.getItem('user'));
 
   const handleChange = (e) => {
-    const { type, files } = e.target;
+    const { type, files, value } = e.target;
 
     if (type === "file") {
       const file = files[0];
@@ -20,6 +21,8 @@ function PostADD(props) {
         setPreview(reader.result);
       };
       reader.readAsDataURL(file);
+    } else if (type === "text") {
+      setDescription(value);
     }
   };
 
@@ -29,6 +32,9 @@ function PostADD(props) {
     if (Post) {
       formPayload.append("Post", Post);
     }
+    if (description) {
+      formPayload.append("Description", description);
+    }
 
     try {
       const response = await axios.post(`http://localhost:8080/${User._id}/Post`, formPayload, {
@@ -36,10 +42,9 @@ function PostADD(props) {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(response.data);
-      //dk
-      navigate('/profile'); // Log the response data if needed
-      // Optionally handle success, update state, or navigate
+      console.log("Response data:", response.data);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      navigate('/profile'); 
     } catch (error) {
       console.error("Error uploading post:", error);
       // Optionally handle error, display error message to user
@@ -56,7 +61,13 @@ function PostADD(props) {
           name="profile"
           onChange={handleChange}
         /><br />
-
+        <label htmlFor="description">Description:</label><br />
+        <input
+          type="text"
+          id="description"
+          name="description"
+          onChange={handleChange}
+        /><br />
         <input type="submit" value="Save" /><br /><br />
         {preview && <img src={preview} alt="Preview" style={{ width: '200px', marginTop: '10px' }} />}
       </form>

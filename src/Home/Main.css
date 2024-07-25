@@ -1,5 +1,5 @@
 .home-post{
-    width:100%;
+    width:468px;
     margin-bottom: 20px;
     /*height: calc(100% - 20px);*/
 }
@@ -39,6 +39,8 @@
 .float-right{
   position: absolute;
   right: 30px;
+  font-size: xx-large;
+  color: white;
 }
 .hPost{
     width: 468px;
@@ -50,17 +52,57 @@
     object-fit: cover;
     object-position: top;
 }
+.post-description{
+    display: flex;
+}
+.cs-bottom-2{
+    font-size: 14px;
+    line-height: 18px;
+}
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 .post-detail{
     width:100%;
     height:162px;
-    background-color: rgb(13, 197, 47);
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    color: white;
+}
+.ml-2 svg{
+    padding: 8px;
+    height: 24px;
+    width: 24px;
+    color: white;
 }
 .post-buttons{
     display: flex;
     justify-content: space-between;
+    margin: 4px 0;
+    height: 40px;
+}
+.Description{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+}
+.commentUsername{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+}
+.IMG-Des{
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
 }
 .add-Comments{
     width:90%;
@@ -87,6 +129,12 @@ textarea::placeholder {
     display: none;
   justify-content: center;
   align-items: center;
+}
+.faceSmile{
+    position: relative;
+    top: 50%;
+    transform: translate(0px, -50%);
+    margin-left: 5px;
 }
 @keyframes heartbeat {
     0% { transform: scale(1); }

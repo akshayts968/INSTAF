@@ -15,6 +15,14 @@ const commentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Comment', 
     }],
+    nReply:{
+        type:Number,
+        default:0,
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
 });
 const Comment=mongoose.model("Comment",commentSchema);
 module.exports=Comment;

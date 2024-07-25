@@ -7,9 +7,13 @@ import Edit from '../../Add/Edit';
 import PostADD from '../../Add/Padd';
 import DeletePost from '../../Add/DeletePost'; // Adjusted import name
 
-function Post({ img, onClick, index }) {
+function Post({ post,img, onClick,postView, index }) {
+  const handleClick = () => {
+    onClick(index);
+    postView(post);
+  };
   return (
-    <div className='img' onClick={() => {onClick(index)}}>
+    <div className='img' onClick={handleClick}>
       <img
         className='img20'
         src={img || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOr3cDHrDjizSMpE4E4zRDzGsV6F7EmO867A&s'}
@@ -40,7 +44,7 @@ function PostBar() {
   );
 }
 
-function MainProfile() {
+function MainProfile(props) {
   const [edit, setEdit] = useState(false);
   const [addPost, setAddPost] = useState(false);
   const [deletePost, setDeletePost] = useState(null); // Changed to store post ID to be deleted
@@ -48,24 +52,48 @@ function MainProfile() {
   const [user, setUser] = useState({});
   const [profileData, setProfileData] = useState({});
   const { id } = useParams();
-
+  const [follow,setFollow] = useState("AK");
   const toggleEdit = () => setEdit(!edit);
   const toggleAddPost = () => setAddPost(!addPost);
-  const confirmDeletePost = (postId) => setDeletePost(postId); // Set the post ID for deletion
+   // Set the post ID for deletion
   const closeDeletePost = () => setDeletePost(null); // Clear the delete post state
-
+  const User = JSON.parse(localStorage.getItem('user'));
+  const [nPost,setNPost] = useState(0);
+  const [nFollowers, setNFollowers] = useState(0);
+  const [nFollowing, setNFollowing] = useState(0);
+  const [sameUSer,setSameUSer] = useState(false);
+  const confirmDeletePost = (postId) =>{
+    console.log(postId,user.post.includes(postId),user,"DATA OF HIM");
+    //if(user.post.includes(postId))
+    setDeletePost(postId)
+  };
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    setUser(storedUser);
+    if (storedUser && Array.isArray(storedUser.followings)) {
+      if (id && storedUser.followings.includes(id)) {
+        setFollow("Following");
+      } else {
+        setFollow("Follow");
+      }
+      setNFollowers(storedUser.nFollowers);
+      setNFollowing(storedUser.nFollowing);
+      console.log(storedUser.followings,storedUser.followings.includes(id),storedUser,"data is this ,an")
+    } else {
+      console.error("Stored user data is invalid or followers is not an array");
+    }
+  }, [id]);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const storedUser = JSON.parse(localStorage.getItem('user'));
-        setUser(storedUser);
-
         const response = id
           ? await axios.get(`http://localhost:8080/post/${id}`)
-          : await axios.get(`http://localhost:8080/post/${storedUser._id}`);
+          : await axios.get(`http://localhost:8080/post/${User._id}`);
 
         setPosts(response.data.data);
         setProfileData(response.data.User);
+        setNFollowers(response.data.User.nFollowers);
+        setNFollowing(response.data.User.nFollowing);
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
@@ -77,6 +105,13 @@ function MainProfile() {
   const handlePostDelete = (deletedPostId) => {
     setPosts((prevPosts) => prevPosts.filter((post) => post._id !== deletedPostId));
   };
+  async function followADD(){
+    const response = await axios.put(`http://localhost:8080/user/${id}/${User._id}`);
+    console.log(response,"data");
+    localStorage.setItem('user', JSON.stringify(response.data.user));
+    setUser(response.data.user);
+    setProfileData(response.data.coMan);
+  }
 
   return (
     <div className='MainProfile'>
@@ -98,7 +133,7 @@ function MainProfile() {
         <div className='item2'>
           <div className='username'>{profileData.name || 'ak__s_h__ay'}</div>
           {id ? (
-            <div className='UserB2'>Follow</div>
+            <div className='UserB2 Follow' onClick={followADD}>{follow}</div>
           ) : (
             <div className='UserB2' onClick={toggleEdit}>
               Edit Profile
@@ -127,7 +162,7 @@ function MainProfile() {
       <PostBar />
       <div className='Posts'>
         {posts.map((post) => (
-          <Post key={post._id} index={post._id} img={post.videourl} onClick={confirmDeletePost} />
+          <Post key={post._id} index={post._id} img={post.videourl} post={post} postView={props.postView} onClick={confirmDeletePost} />
         ))}
       </div>
     </div>

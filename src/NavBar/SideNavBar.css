@@ -5,6 +5,9 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    border-right-style: solid;
+    border-right-color: rgb(38, 38, 38);
+    border-right-width: 1px;
 }
 .Search-Div{
     height: 100vh;
