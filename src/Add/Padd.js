@@ -37,7 +37,7 @@ function PostADD() {
     }
 
     try {
-      const response = await axios.post(`http://localhost:8080/${User._id}/Post`, formPayload, {
+      const response = await axios.post(`http://localhost:8080/post/${User._id}/create`, formPayload, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

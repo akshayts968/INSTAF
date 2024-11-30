@@ -89,7 +89,7 @@ function MainProfile(props) {
         const response = id
           ? await axios.get(`http://localhost:8080/post/${id}`)
           : await axios.get(`http://localhost:8080/post/${User._id}`);
-
+        console.log(response,"data");
         setPosts(response.data.data);
         setProfileData(response.data.User);
         setNFollowers(response.data.User.nFollowers);
@@ -123,12 +123,14 @@ function MainProfile(props) {
 
       <div className='header'>
         <div className='item1'>
-          <div
-            className='item1Img'
-            style={{
-              backgroundImage: `url(${profileData.profile})`,
-            }}
-          ></div>
+        <div
+  className="item1Img"
+  style={{
+    backgroundImage: `url(${profileData.profile})`, // Add `url()` to wrap the image URL
+  }}
+>
+</div>
+
         </div>
         <div className='item2'>
           <div className='username'>{profileData.name || 'ak__s_h__ay'}</div>

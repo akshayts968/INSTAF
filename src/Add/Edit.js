@@ -43,7 +43,7 @@ function Edit(props) {
     }
 
     try {
-      const response = await axios.post(`http://localhost:8080/${User._id}/edit`, formPayload, {
+      const response = await axios.put(`http://localhost:8080/user/${User._id}/edit`, formPayload, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

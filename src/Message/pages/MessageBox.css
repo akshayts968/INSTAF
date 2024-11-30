@@ -1,0 +1,26 @@
+.preview{
+    height: 56px;
+    width: calc(100% - 40px);
+    padding: 12px;
+}
+.MessageBox{
+    border-radius: 22px;
+    border: 0.8px solid rgb(54,54,54);
+}
+.inputMsg{
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-grow: 1;
+    color: whitesmoke;
+}
+.msgBtn{
+    border: none;
+    background: transparent;
+    color: rgb(0 149 246);
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 2px;
+    cursor: pointer;
+    outline-color: rgb(0 149 246);
+}

@@ -52,6 +52,7 @@ const SubMain = (props) => {
             const response = await axios.get(`http://localhost:8080/user/${props.post.postOwner}`, {
               timeout: 100000 
             });
+            console.log('comments are',response)
             setCurrUser(response.data);
           }
         }
@@ -96,10 +97,11 @@ const SubMain = (props) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/fetchcomment/${props.post._id}`, {
-          timeout: 100000 // 100 seconds timeout
+        const response = await axios.get(`http://localhost:8080/comment/${props.post._id}`, {
+          timeout: 100000 
         });
         const data = response.data;
+        console.log('comment',data);
         setComments(data.comments);
       } catch (error) {
         console.error('Error fetching comments:', error);
@@ -176,7 +178,7 @@ const SubMain = (props) => {
                 backgroundColor: '#ccc',
                 objectFit: 'cover'
               }}
-              src={currUser.profile}
+              src={currUser.profile||props.post.postOwner.profile}
               alt=""
             />
             <div>

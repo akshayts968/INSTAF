@@ -106,7 +106,7 @@ app.use((req, res, next) => {
 mongoose.connect(MONGO_URL)
     .then(() => console.log("Connected to DB"))
     .catch(err => console.log(err));
-const store = MongoStore.create({
+    const store = MongoStore.create({
     mongoUrl:MONGO_URL,
     crypto: {
         secret:process.env.SECRET,
@@ -206,19 +206,15 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-app.post('/:id/edit', upload.single('profile'), async (req, res) => {
+app.put('/user/:id/edit', upload.single('profile'), async (req, res) => {
     try {
       const id = req.params.id;
       const { username, name, email } = req.body;
-      const profileUrl = req.file ? req.file.path : null; // Cloudinary URL
-  
+      const profileUrl = req.file ? req.file.path : null; 
       const user = await User.findById(id);
-  
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-  
-      // If a new profile image is uploaded, delete the old one from Cloudinary
       if (profileUrl && user.profile) {
         const urlParts = user.profile.split('/');
         const oldImagePublicId = urlParts[urlParts.length - 1].split('.')[0];
@@ -302,7 +298,7 @@ app.get("/post/:id", async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
-app.post("/:id/Post", upload.single('Post'), async (req, res) => {
+app.post("/post/:id/create", upload.single('Post'), async (req, res) => {
     const id = req.params.id;
     const postUrl = req.file ? req.file.path : null;
     const body = Object.assign({}, req.body);
@@ -431,14 +427,13 @@ app.get('/sresult', async (req, res) => {
 app.get("/fetchcomment", async (req, res) => {
     try {
       const comments = await Comment.find({}).populate("owner");
-      //console.log("comments jbjbj",comments);
       res.json(comments); 
     } catch (error) {
       console.error('Error fetching comments:', error);
       res.status(500).json({ error: 'Internal Server Error' }); 
     }
   });
-  app.get("/fetchcomment/:id", async (req, res) => {
+  app.get("/comment/:id", async (req, res) => {
     const id = req.params.id;
     try {
       const post = await Post.findById(id)
@@ -446,6 +441,7 @@ app.get("/fetchcomment", async (req, res) => {
     path: 'comments',
     populate: {
       path: 'replies',
+      populate: { path: 'owner' },
       populate: {
         path: 'replies', 
         populate: { path: 'owner' } 
@@ -466,7 +462,7 @@ app.post("/login", passport.authenticate("local", {
 }), (req, res) => {
     res.send({ message: 'Login successful!', user: req.user });
 });
-app.get('/api/posts', async (req, res) => {
+app.get('/post/all', async (req, res) => {
     try {
         const posts = await Post.find({}).populate('postOwner');
       //console.log(posts);

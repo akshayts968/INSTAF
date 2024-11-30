@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 const User = require('../model/User'); // Adjust the path as necessary
 
 async function Reset() {
@@ -24,4 +24,11 @@ async function Reset() {
 
 // Example usage:
 // resetAllUserCounts();
-module.exports=Reset;
+module.exports=Reset;*/
+const resetPassword = (user, newPassword) => {
+    user.password = newPassword;
+    user.save();
+  };
+  
+  module.exports = { resetPassword };
+  
