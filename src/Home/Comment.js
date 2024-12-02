@@ -7,7 +7,7 @@ function Comment(props){
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/user/${props.ownerId}`);
+                const response = await axios.get(`${process.env.REACT_APP_SERVER}/user/${props.ownerId}`);
                 console.log("inside comment",response);
                 setUser(response.data);
             } catch (error) {

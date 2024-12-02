@@ -15,7 +15,7 @@ import MessageBox from './pages/MessageBox';
 import ProfileMSg from './pages/ProfileMSg';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
-const socket = io('http://localhost:8080');
+const socket = io('${process.env.REACT_APP_SERVER}');
 
 function MessageInd(){
   return (
@@ -75,7 +75,7 @@ useEffect(()=>{
     const fetchData = async () => {
       try {
         setMsgView(true);
-        const response = await axios.get(`http://localhost:8080/user/${Rid}`); 
+        const response = await axios.get(`${process.env.REACT_APP_SERVER}/user/${Rid}`); 
         console.log("jlk",response);
         setReceiver(response.data);
       } catch (error) {
@@ -104,7 +104,7 @@ const storedUser = JSON.parse(localStorage.getItem('user'));
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/all'); 
+      const response = await axios.get('${process.env.REACT_APP_SERVER}/all'); 
       console.log(response);
       setChatList(response.data);
     } catch (error) {

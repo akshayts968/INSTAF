@@ -41,7 +41,6 @@ function Edit(props) {
     if (formData.profile) {
       formPayload.append("profile", formData.profile);
     }
-
     try {
       const response = await axios.put(`http://localhost:8080/user/${User._id}/edit`, formPayload, {
         headers: {

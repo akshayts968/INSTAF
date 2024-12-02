@@ -6,7 +6,7 @@ function DeletePost({ postId, onClose, onDelete }) {
   const navigate = useNavigate();
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:8080/post/${postId}`);
+      const response = await axios.delete(`${process.env.REACT_APP_SERVER}/post/${postId}`);
       onDelete(postId);  // Call the onDelete function to update the posts in the parent component
       onClose();
       console.log(response);

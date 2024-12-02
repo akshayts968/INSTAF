@@ -74,7 +74,7 @@ const [isSearchActive, setIsSearchActive] = useState(false);
       if (sValue) {
         console.log("in", sValue); 
         try {
-          const response = await axios.get(`http://localhost:8080/sresult?query=${sValue}`);
+          const response = await axios.get(`${process.env.REACT_APP_SERVER}/sresult?query=${sValue}`);
           setSearchResult(response.data);
         } catch (error) {
           console.error('Error fetching data:', error);

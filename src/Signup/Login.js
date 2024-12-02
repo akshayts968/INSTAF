@@ -2,6 +2,9 @@ import './Login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState,useEffect } from 'react';
+const serverUrl = process.env.REACT_APP_SERVER;
+console.log('Server URL:', process.env.REACT_APP_SERVER);
+
 function Login() {
 
     const navigate = useNavigate();
@@ -19,7 +22,7 @@ async function DataCheck(event){
     console.log('Username:', username);
     console.log('Password:', password);*/
     try {
-        const response = await axios.post('http://localhost:8080/login', {
+        const response = await axios.post(`${process.env.REACT_APP_SERVER}/login`, {
           username: username,
           password: password
         });

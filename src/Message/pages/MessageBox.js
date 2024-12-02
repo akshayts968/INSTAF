@@ -15,7 +15,7 @@ function MessageBox(props){
         const payload = {
           content: message
         };
-        const response = await axios.post(`http://localhost:8080/Messages/${storedUser._id}/${props.RID}`, payload);
+        const response = await axios.post(`${process.env.REACT_APP_SERVER}/Messages/${storedUser._id}/${props.RID}`, payload);
         console.log("content0",response.data);
         console.log("content0",message);
         props.socket.emit('sendMessage', { room: props.room, content:response.data });

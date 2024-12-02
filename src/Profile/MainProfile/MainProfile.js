@@ -87,8 +87,8 @@ function MainProfile(props) {
     const fetchPosts = async () => {
       try {
         const response = id
-          ? await axios.get(`http://localhost:8080/post/${id}`)
-          : await axios.get(`http://localhost:8080/post/${User._id}`);
+          ? await axios.get(`${process.env.REACT_APP_SERVER}/post/${id}`)
+          : await axios.get(`${process.env.REACT_APP_SERVER}/post/${User._id}`);
         console.log(response,"data");
         setPosts(response.data.data);
         setProfileData(response.data.User);
@@ -106,7 +106,7 @@ function MainProfile(props) {
     setPosts((prevPosts) => prevPosts.filter((post) => post._id !== deletedPostId));
   };
   async function followADD(){
-    const response = await axios.put(`http://localhost:8080/user/${id}/${User._id}`);
+    const response = await axios.put(`${process.env.REACT_APP_SERVER}/user/${id}/${User._id}`);
     console.log(response,"data");
     localStorage.setItem('user', JSON.stringify(response.data.user));
     setUser(response.data.user);

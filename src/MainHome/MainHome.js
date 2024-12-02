@@ -10,7 +10,7 @@ function MainHome({ toggle }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/post/all');
+        const response = await axios.get(`${process.env.REACT_APP_SERVER}/post/all`);
         const data = response.data;
        // console.log(data, "is this");
         

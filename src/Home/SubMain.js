@@ -7,7 +7,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import io from 'socket.io-client';
 import { faHome, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faComment, faBookmark, faPaperPlane, faFaceSmile } from '@fortawesome/free-regular-svg-icons';
-const socket = io('http://localhost:8080');
+const socket = io(`${process.env.REACT_APP_SERVER}`);
 
 const SubMain = (props) => {
   const [replyTo, setReplyTo] = useState("");
@@ -49,7 +49,7 @@ const SubMain = (props) => {
           if (User._id === props.post.postOwner) {
             setCurrUser(User);
           } else {
-            const response = await axios.get(`http://localhost:8080/user/${props.post.postOwner}`, {
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/user/${props.post.postOwner}`, {
               timeout: 100000 
             });
             console.log('comments are',response)
@@ -97,7 +97,7 @@ const SubMain = (props) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/comment/${props.post._id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER}/comment/${props.post._id}`, {
           timeout: 100000 
         });
         const data = response.data;
@@ -121,7 +121,7 @@ const SubMain = (props) => {
     const post = props.post._id;
     try {
       socket.emit('joinRoom', room);
-      const response = await axios.put(`http://localhost:8080/post/${post}`, { comment: newComment, post, userId: User._id,commentId:replyTo }, {
+      const response = await axios.put(`${process.env.REACT_APP_SERVER}/post/${post}`, { comment: newComment, post, userId: User._id,commentId:replyTo }, {
         headers: {
           'Content-Type': 'application/json'
         }

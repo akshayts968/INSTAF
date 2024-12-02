@@ -8,7 +8,7 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import io from 'socket.io-client';
 import EmojiPicker from 'emoji-picker-react';
 import Dot3 from '../Profile/Dot3';
-const socket = io('http://localhost:8080');
+const socket = io(`${process.env.REACT_APP_SERVER}`);
 
 const Main = ({ post, onClick,toggle }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -98,7 +98,7 @@ const Main = ({ post, onClick,toggle }) => {
 
     const User = JSON.parse(localStorage.getItem('user'));
     try {
-      const response = await axios.put(`http://localhost:8080/post/${postId}`, 
+      const response = await axios.put(`${process.env.REACT_APP_SERVER}/post/${postId}`, 
         { comment: comment, post: postId, userId: User._id },
         { headers: { 'Content-Type': 'application/json' } }
       );
