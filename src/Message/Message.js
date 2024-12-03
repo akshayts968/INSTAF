@@ -15,7 +15,7 @@ import MessageBox from './pages/MessageBox';
 import ProfileMSg from './pages/ProfileMSg';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
-const socket = io('${process.env.REACT_APP_SERVER}');
+const socket = io(`${process.env.REACT_APP_SERVER}`);
 
 function MessageInd(){
   return (
@@ -70,6 +70,7 @@ const contentSave = (message) => {
 useEffect(()=>{
   if(Rid){
     const room = [id, Rid].sort().join('-');
+    alert(room)
     setRoom(room);
     socket.emit('joinRoom',room );
     const fetchData = async () => {
@@ -104,7 +105,7 @@ const storedUser = JSON.parse(localStorage.getItem('user'));
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await axios.get('${process.env.REACT_APP_SERVER}/all'); 
+      const response = await axios.get(`${process.env.REACT_APP_SERVER}/all`); 
       console.log(response);
       setChatList(response.data);
     } catch (error) {
